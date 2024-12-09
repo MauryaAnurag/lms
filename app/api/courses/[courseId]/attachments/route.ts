@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
@@ -39,4 +39,11 @@ export async function POST(
     console.log("COURSE_ID_ATTACHMENTS", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
+}
+
+export async function OPTIONS(
+  req: Request,
+) {
+  return NextResponse.json({
+    status: 200});
 }
