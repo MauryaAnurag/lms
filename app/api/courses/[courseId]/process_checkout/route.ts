@@ -13,6 +13,7 @@ const razorpay = new Razorpay({
 
 
 
+
 export async function POST(req: Request, { params }: { params: { courseId: string } }) {
     try {
         // Get the payment details from the request body
