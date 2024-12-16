@@ -121,3 +121,33 @@ model StripeCustomer {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Coupon {
+  id                Int      @id @default(autoincrement())
+  code              String   @unique
+  discountPercentage Int
+  createdAt         DateTime @default(now())
+}
+
+model Session {
+  id            String   @id @default(uuid())
+  title         String
+  price         Float
+  startTime     DateTime
+  endTime       DateTime
+  googleMeetLink String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  sessionPurchases SessionPurchase[]
+
+}
+
+model SessionPurchase {
+  id          String   @id @default(uuid())
+  userId      String
+  sessionId   String
+  purchaseTime DateTime @default(now())
+  amount      Float
+
+  Session     Session  @relation(fields: [sessionId], references: [id])
+}

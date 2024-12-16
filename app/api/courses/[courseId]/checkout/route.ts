@@ -1,21 +1,25 @@
-import Stripe from "stripe";
+import Razorpay from "razorpay";
 import { currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
-import { stripe } from "@/lib/stripe";
+import { auth } from "@/lib/utils";
+
+// Initialize Razorpay with your credentials
+const razorpay = new Razorpay({
+  key_id: "rzp_test_fBttTZVJm9TsAD",
+  key_secret: "nfvZZg9IYHRNCS1Ltprzv5x1",
+});
 
 export async function POST(
   req: Request,
   { params }: { params: { courseId: string } }
 ) {
   try {
-    const user = await currentUser();
 
-    if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
+    const { userId } = auth();
+    const { couponCode } = await req.json();
+    // Find the course
     const course = await db.course.findUnique({
       where: {
         id: params.courseId,
@@ -23,10 +27,11 @@ export async function POST(
       }
     });
 
+    // Check if the user has already purchased the course
     const purchase = await db.purchase.findUnique({
       where: {
         userId_courseId: {
-          userId: user.id,
+          userId: userId,
           courseId: params.courseId
         }
       }
@@ -40,57 +45,43 @@ export async function POST(
       return new NextResponse("Not found", { status: 404 });
     }
 
-    const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
-      {
-        quantity: 1,
-        price_data: {
-          currency: "USD",
-          product_data: {
-            name: course.title,
-            description: course.description!,
-          },
-          unit_amount: Math.round(course.price! * 100),
-        }
-      }
-    ];
+    // Calculate the discounted price (if applicable)
+    let discountedPrice = course.price!;
 
-    let stripeCustomer = await db.stripeCustomer.findUnique({
-      where: {
-        userId: user.id,
-      },
-      select: {
-        stripeCustomerId: true,
-      }
-    });
-
-    if (!stripeCustomer) {
-      const customer = await stripe.customers.create({
-        email: user.emailAddresses[0].emailAddress,
+    if (couponCode) {
+      // Validate coupon and apply discount if valid
+      const coupon = await db.coupon.findUnique({
+        where: { code: couponCode },
       });
 
-      stripeCustomer = await db.stripeCustomer.create({
-        data: {
-          userId: user.id,
-          stripeCustomerId: customer.id,
-        }
-      });
+      if (coupon) {
+        // Apply discount
+        discountedPrice = discountedPrice * (1 - coupon.discountPercentage / 100);
+      }
     }
 
-    const session = await stripe.checkout.sessions.create({
-      customer: stripeCustomer.stripeCustomerId,
-      line_items,
-      mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?success=1`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?canceled=1`,
-      metadata: {
+    // Prepare the Razorpay order
+    const order = await razorpay.orders.create({
+      amount: Math.round(discountedPrice * 100), // Razorpay expects the amount in paise
+      currency: "INR",
+      receipt: `order_rcptid_${Math.random()}`,
+      payment_capture: true,
+      notes: {
         courseId: course.id,
-        userId: user.id,
-      }
+        userId: userId,
+      },
     });
 
-    return NextResponse.json({ url: session.url });
+
+
+    // Return the order details to the frontend
+    return NextResponse.json({
+      orderId: order.id,
+      key_id: process.env.RAZORPAY_KEY_ID, // Send Razorpay Key ID to the frontend
+    });
+
   } catch (error) {
-    console.log("[COURSE_ID_CHECKOUT]", error);
-    return new NextResponse("Internal Error", { status: 500 })
+    console.error("[COURSE_CHECKOUT_RAZORPAY]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }

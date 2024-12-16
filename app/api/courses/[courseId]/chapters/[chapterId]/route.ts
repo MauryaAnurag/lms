@@ -9,6 +9,36 @@ const { Video } = new Mux(
   process.env.MUX_TOKEN_SECRET!,
 );
 
+
+export async function GET(
+  req: Request,
+  { params }: { params: { courseId: string; chapterId: string } }
+) {
+  try {
+
+    // Fetch the chapter with muxData
+    const chapter = await db.chapter.findUnique({
+      where: {
+        id: params.chapterId,
+        courseId: params.courseId,  // Ensure the chapter belongs to the correct course
+      },
+      include: {
+        muxData: true,  // Include muxData associated with the chapter
+      },
+    });
+
+    if (!chapter) {
+      return new NextResponse("Not Found", { status: 404 });
+    }
+
+    // Return the chapter data along with the muxData (if exists)
+    return NextResponse.json(chapter);
+  } catch (error) {
+    console.log("[CHAPTER_ID_FETCH]", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+}
+
 export async function DELETE(
   req: Request,
   { params }: { params: { courseId: string; chapterId: string } }
@@ -97,12 +127,13 @@ export async function PATCH(
 ) {
   try {
     const { userId } = auth();
-    
+
     const { isPublished, ...values } = await req.json();
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
-    }
+    } 
+    
 
     const ownCourse = await db.course.findUnique({
       where: {
@@ -133,13 +164,20 @@ export async function PATCH(
       });
 
       if (existingMuxData) {
-        await Video.Assets.del(existingMuxData.assetId);
-        await db.muxData.delete({
-          where: {
-            id: existingMuxData.id,
-          }
-        });
+        try {
+          // Only try to delete if an existing asset exists
+          await Video.Assets.del(existingMuxData.assetId); // Attempt to delete the asset
+
+          // If deletion is successful, delete the record from your database
+          await db.muxData.delete({
+            where: { id: existingMuxData.id },
+          });
+        } catch (deleteError) {
+          // Log error if asset deletion fails
+          console.warn("[COURSES_CHAPTER_ID] Failed to delete Mux asset:", deleteError);
+        }
       }
+
 
       const asset = await Video.Assets.create({
         input: values.videoUrl,
@@ -159,6 +197,6 @@ export async function PATCH(
     return NextResponse.json(chapter);
   } catch (error) {
     console.log("[COURSES_CHAPTER_ID]", error);
-    return new NextResponse("Internal Error", { status: 500 }); 
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.1.2",
     "@clerk/nextjs": "^4.23.5",
     "@hello-pangea/dnd": "^16.3.0",
     "@hookform/resolvers": "^3.3.1",
@@ -41,6 +43,7 @@
     "next": "13.4.12",
     "postcss": "8.4.29",
     "query-string": "^8.1.0",
+    "razorpay": "^2.9.5",
     "react": "18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",

@@ -59,3 +59,11 @@ export async function PATCH(
     return new NextResponse("Internal Error", { status: 500 }); 
   }
 }
+
+
+export async function OPTIONS(
+  req: Request,
+) {
+  return NextResponse.json({
+    status: 200});
+}

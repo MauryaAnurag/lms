@@ -34,7 +34,7 @@ export const CourseSidebar = async ({
       }
     }
   });
-
+console.log(purchase)
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
       <div className="p-8 flex flex-col border-b">
