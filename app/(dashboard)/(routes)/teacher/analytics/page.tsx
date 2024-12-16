@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/lib/utils";
 import { redirect } from "next/navigation";
 
 import { getAnalytics } from "@/actions/get-analytics";
