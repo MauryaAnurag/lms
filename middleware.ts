@@ -7,14 +7,14 @@ import { NextRequest, NextResponse } from "next/server";
 // export default authMiddleware({
 //   publicRoutes: ["/api/webhook","/api/uploadthing"]
 // });
-// export function middleware(req: NextRequest) {
-//   const url = req.nextUrl.clone();
+export function middleware(req: NextRequest) {
+  const url = req.nextUrl.clone();
 
    
 
-//   // Proceed with the request if the user is authenticated
-//   return NextResponse.next();
-// }
+  // Proceed with the request if the user is authenticated
+  return NextResponse.next();
+}
 
 
 export const config = {
