@@ -1,13 +1,14 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { getDashboardCourses } from "@/actions/get-dashboard-courses";
-import { auth2 } from '@/lib/utils';
+import { auth, auth2 } from '@/lib/utils';
 
 
 // GET method to fetch the dashboard courses for a specific user
 export async function GET(req: NextRequest) {
   try {
    
-    const {userId} = await auth2(req);
+    // const {userId} = await auth2(req);
+    const {userId} = await auth();
     console.log(userId);
     
     // Get the userId from query parameters, session, or any authentication method
