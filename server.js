@@ -19,7 +19,7 @@ server.all('*', (req, res) => {
 
 // Start the server
 app.prepare().then(() => {
-  server.listen(3000, (err) => {
+  server.listen(3001, '0.0.0.0',(err) => {
     if (err) throw err;
     console.log('> Ready on http://localhost:3000');
   });
