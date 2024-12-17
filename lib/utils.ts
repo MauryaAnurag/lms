@@ -34,6 +34,7 @@ export async function auth2(req: NextRequest) {
   SQIDAQAB
   -----END PUBLIC KEY-----
   `,
+    issuer: "your-issuer-url", // Add the issuer property
   };
 
   try {
