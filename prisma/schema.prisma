@@ -151,3 +151,35 @@ model SessionPurchase {
 
   Session     Session  @relation(fields: [sessionId], references: [id])
 }
+
+model Voucher {
+  id             String   @id @default(uuid())
+  title          String
+  price          Float
+  discountPrice  Float
+  description    String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+   PaymentVoucher PaymentVoucher[]
+}
+
+model PaymentVoucher{
+  id          String   @id @default(uuid())
+  userId      String
+  voucherId   String
+  amount      Float
+  paymentStatus PaymentStatus
+  paymentTime DateTime @default(now())
+  razorpayOrderId String?
+  razorpayPaymentId String?
+  razorpaySignature String?
+  
+  voucher     Voucher  @relation(fields: [voucherId], references: [id])
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
