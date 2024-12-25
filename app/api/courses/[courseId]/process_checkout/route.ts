@@ -19,7 +19,10 @@ export async function POST(req: Request, { params }: { params: { courseId: strin
     try {
         // Get the payment details from the request body
         const { razorpayPaymentId, razorpayOrderId, razorpaySignature } = await req.json();
-        const { userId } = auth();
+        const { userId } = await auth(req);
+        if (!userId) {
+            return new NextResponse("User not authenticated", { status: 401 });
+        }
         // Fetch the order from Razorpay using the orderId
         const order = await razorpay.orders.fetch(razorpayOrderId);
 

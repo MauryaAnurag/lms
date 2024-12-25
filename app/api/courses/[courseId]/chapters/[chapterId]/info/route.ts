@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 // API route to fetch chapter details
 export async function GET(req: NextRequest, { params }: { params: { courseId: string; chapterId: string } }) {
   try {
-    const { userId } = auth(); // Retrieve userId from authentication system
+    const { userId } = await auth(req); // Retrieve userId from authentication system
 
     // If there's no userId, return an Unauthorized response
     if (!userId) {

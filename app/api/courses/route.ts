@@ -10,7 +10,7 @@ export async function POST(
   req: Request,
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth(req);
     const { title } = await req.json();
 
     if (!userId || !isTeacher(userId)) {
@@ -44,7 +44,7 @@ export async function OPTIONS(
 export async function GET(req: NextRequest) {
   try {
     // Get the userId from Clerk's auth function
-    const { userId } = auth();
+    const { userId } = await auth(req);
 
     // If there's no userId, return an Unauthorized response
     if (!userId) {

@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
   try {
     // Get the userId from Clerk's auth function
-    const { userId } = auth();
+    const { userId } = await auth(req);
 
     // If there's no userId, return an Unauthorized response
     if (!userId) {

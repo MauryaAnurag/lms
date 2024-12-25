@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export async function POST(req: Request) {
   try {
     // Get the userId from authentication (you might have your own auth method)
-    const { userId } = auth();
+    const { userId } = await auth(req);
 
     // If no user is authenticated, return 401 Unauthorized
     if (!userId) {

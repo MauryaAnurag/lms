@@ -264,11 +264,11 @@ const route_razorpay = new (razorpay_default())({
     key_id: "rzp_test_fBttTZVJm9TsAD",
     key_secret: "nfvZZg9IYHRNCS1Ltprzv5x1"
 });
-async function POST(request, { params }) {
-    const { couponCode } = await request.json();
+async function POST(req, { params }) {
+    const { couponCode } = await req.json();
     const voucherId = params.voucherId;
     try {
-        const { userId } = (0,utils/* auth */.I)();
+        const { userId } = await (0,utils/* auth */.I)(req);
         const voucher = await db.db.voucher.findUnique({
             where: {
                 id: voucherId
@@ -359,7 +359,7 @@ if (false) {}
 var __webpack_require__ = require("../../../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [501,335,548,766,54,839], () => (__webpack_exec__(9584)));
+var __webpack_exports__ = __webpack_require__.X(0, [501,335,478,766,54,839], () => (__webpack_exec__(9584)));
 module.exports = __webpack_exports__;
 
 })();

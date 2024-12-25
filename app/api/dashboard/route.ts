@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { getDashboardCourses } from "@/actions/get-dashboard-courses";
-import { auth, auth2 } from '@/lib/utils';
+import { auth } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   try {
    
     // const {userId} = await auth2(req);
-    const {userId} = await auth();
+    const {userId} = await  auth(req);
     console.log(userId);
     
     // Get the userId from query parameters, session, or any authentication method

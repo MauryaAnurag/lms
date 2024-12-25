@@ -181,7 +181,7 @@ var db = __webpack_require__(3302);
 const dynamic = "force-dynamic";
 async function PUT(req, { params }) {
     try {
-        const { userId } = (0,utils/* auth */.I)();
+        const { userId } = await (0,utils/* auth */.I)(req);
         if (!userId) {
             return new next_response/* default */.Z("Unauthorized", {
                 status: 401
@@ -273,7 +273,7 @@ if (false) {}
 var __webpack_require__ = require("../../../../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [501,335,548,839], () => (__webpack_exec__(2259)));
+var __webpack_exports__ = __webpack_require__.X(0, [501,335,478,839], () => (__webpack_exec__(2259)));
 module.exports = __webpack_exports__;
 
 })();

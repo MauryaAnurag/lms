@@ -179,9 +179,16 @@ var utils = __webpack_require__(5839);
 
 
 const dynamic = "force-dynamic";
-async function GET(request) {
+async function GET(req) {
     try {
-        const { userId } = (0,utils/* auth */.I)(); // User ID from URL parameters
+        const { userId } = await (0,utils/* auth */.I)(req); // User ID from URL parameters
+        if (!userId) {
+            return next_response/* default */.Z.json({
+                message: "User ID is required"
+            }, {
+                status: 400
+            });
+        }
         // Fetch session purchases, payment vouchers, and course purchases for the user
         const sessionPurchases = await db.db.sessionPurchase.findMany({
             where: {
@@ -306,7 +313,7 @@ if (false) {}
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [501,335,548,839], () => (__webpack_exec__(2943)));
+var __webpack_exports__ = __webpack_require__.X(0, [501,335,478,839], () => (__webpack_exec__(2943)));
 module.exports = __webpack_exports__;
 
 })();

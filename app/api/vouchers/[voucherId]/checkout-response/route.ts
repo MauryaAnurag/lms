@@ -8,11 +8,11 @@ const razorpay = new Razorpay({
     key_secret: "nfvZZg9IYHRNCS1Ltprzv5x1",
   });
 
-export async function POST(request: Request, { params }: { params: { voucherId: string } }) {
-  const { paymentId, orderId, signature } = await request.json();
+export async function POST(req: Request, { params }: { params: { voucherId: string } }) {
+  const { paymentId, orderId, signature } = await req.json();
 
   try {
-    const {userId} = auth()
+    const {userId} = await auth(req)
     // Fetch the voucher by orderId (paymentId)
     const voucher = await db.voucher.findUnique({
       where: { id: params.voucherId },
@@ -37,7 +37,7 @@ export async function POST(request: Request, { params }: { params: { voucherId: 
     const payment = await db.paymentVoucher.create({
       data: {
         voucherId: voucher.id,
-        userId: userId,  // Assuming you have a way to get the current user's ID
+        userId: userId!,  // Assuming you have a way to get the current user's ID
         amount: voucher.discountPrice, // Use the appropriate amount
         razorpayOrderId:orderId,  // Store the Razorpay payment ID
         razorpayPaymentId: paymentId,

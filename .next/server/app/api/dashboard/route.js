@@ -227,7 +227,7 @@ const dynamic = "force-dynamic";
 async function GET(req) {
     try {
         // const {userId} = await auth2(req);
-        const { userId } = await (0,utils/* auth */.I)();
+        const { userId } = await (0,utils/* auth */.I)(req);
         console.log(userId);
         // Get the userId from query parameters, session, or any authentication method
         const url = new URL(req.url);
@@ -290,7 +290,7 @@ async function GET(req) {
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [501,335,548,839,1], () => (__webpack_exec__(3827)));
+var __webpack_exports__ = __webpack_require__.X(0, [501,335,478,839,1], () => (__webpack_exec__(3827)));
 module.exports = __webpack_exports__;
 
 })();

@@ -1,4 +1,4 @@
-import { auth } from "@/lib/utils";
+import { auth, auth2 } from "@/lib/utils";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 import { isTeacher } from "@/lib/teacher";
@@ -6,7 +6,7 @@ import { isTeacher } from "@/lib/teacher";
 const f = createUploadthing();
  
 const handleAuth = () => {
-  const { userId } = auth();
+  const { userId } = auth2();
   const isAuthorized = isTeacher(userId);
   console.log(isAuthorized);
   

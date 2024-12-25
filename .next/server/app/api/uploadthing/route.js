@@ -174,7 +174,7 @@ var teacher = __webpack_require__(8542);
 
 const f = (0,next/* createUploadthing */.H)();
 const handleAuth = ()=>{
-    const { userId } = (0,utils/* auth */.I)();
+    const { userId } = (0,utils/* auth2 */.Q)();
     const isAuthorized = (0,teacher/* isTeacher */.I)(userId);
     console.log(isAuthorized);
     if (!userId || !isAuthorized) throw new Error("Unauthorized");
@@ -264,7 +264,7 @@ const isTeacher = (userId)=>{
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [501,548,902,839], () => (__webpack_exec__(4228)));
+var __webpack_exports__ = __webpack_require__.X(0, [501,478,902,839], () => (__webpack_exec__(4228)));
 module.exports = __webpack_exports__;
 
 })();

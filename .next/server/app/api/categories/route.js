@@ -238,7 +238,7 @@ const dynamic = "force-dynamic";
 async function GET(req) {
     try {
         // Get the userId from Clerk's auth function
-        const { userId } = (0,utils/* auth */.I)();
+        const { userId } = await (0,utils/* auth */.I)(req);
         // If there's no userId, return an Unauthorized response
         if (!userId) {
             return new next_response/* default */.Z("Unauthorized", {
@@ -317,7 +317,7 @@ async function GET(req) {
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [501,335,548,839,1], () => (__webpack_exec__(863)));
+var __webpack_exports__ = __webpack_require__.X(0, [501,335,478,839,1], () => (__webpack_exec__(863)));
 module.exports = __webpack_exports__;
 
 })();

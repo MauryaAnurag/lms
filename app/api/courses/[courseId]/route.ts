@@ -15,7 +15,7 @@ export async function DELETE(
   { params }: { params: { courseId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth(req);
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -63,7 +63,7 @@ export async function PATCH(
   { params }: { params: { courseId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth(req);
     const { courseId } = params;
     const values = await req.json();
 
@@ -93,7 +93,7 @@ export async function GET(
   { params }: { params: { courseId: string } }
 ) {
   const { courseId } = params;  // Extract courseId from params
-  const { userId } = auth();    // Get the authenticated user's ID
+  const { userId } = await auth(req);    // Get the authenticated user's ID
   
   // If no userId is found, return Unauthorized
   if (!userId) {

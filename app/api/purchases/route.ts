@@ -4,9 +4,12 @@ import { auth } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: Request) {
+export async function GET(req: Request) {
   try {
-    const { userId } = auth();// User ID from URL parameters
+    const { userId } = await auth(req); // User ID from URL parameters
+    if (!userId) {
+      return NextResponse.json({ message: 'User ID is required' }, { status: 400 });
+    }
 
     // Fetch session purchases, payment vouchers, and course purchases for the user
     const sessionPurchases = await db.sessionPurchase.findMany({

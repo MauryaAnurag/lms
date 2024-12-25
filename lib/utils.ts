@@ -9,8 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 
-// Mock function to simulate Clerk's `auth()` behavior
-export function auth() {
+// Mock function to simulate Clerk's `await auth(req)` behavior
+export function auth2() {
  
   const customUserId = "user_2oPq03UlW8M87Sp0efcNmfPM4bU"; // Hardcoded or retrieved from some logic
 
@@ -22,7 +22,7 @@ export function auth() {
   };
 }
 
-export async function auth2(req: NextRequest) {
+export async function auth(req: Request) {
   const options = {
     jwtKey: `-----BEGIN PUBLIC KEY-----
   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2OOVqxwzb1ahi4g7/nNH
@@ -34,7 +34,7 @@ export async function auth2(req: NextRequest) {
   SQIDAQAB
   -----END PUBLIC KEY-----
   `,
-    issuer: "your-issuer-url", // Add the issuer property
+    issuer: "https://cool-piranha-0.clerk.accounts.dev", // Add the issuer property
   };
 
   try {

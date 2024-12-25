@@ -7,18 +7,19 @@ exports.modules = {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   I: () => (/* binding */ auth)
+/* harmony export */   I: () => (/* binding */ auth),
+/* harmony export */   Q: () => (/* binding */ auth2)
 /* harmony export */ });
-/* unused harmony exports cn, auth2 */
-/* harmony import */ var _clerk_clerk_sdk_node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7548);
+/* unused harmony export cn */
+/* harmony import */ var _clerk_clerk_sdk_node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3478);
 
 
 
 function cn(...inputs) {
     return twMerge(clsx(inputs));
 }
-// Mock function to simulate Clerk's `auth()` behavior
-function auth() {
+// Mock function to simulate Clerk's `await auth(req)` behavior
+function auth2() {
     const customUserId = "user_2oPq03UlW8M87Sp0efcNmfPM4bU"; // Hardcoded or retrieved from some logic
     // Simulating Clerk's auth object with the userId manually set
     return {
@@ -27,7 +28,7 @@ function auth() {
         claims: {}
     };
 }
-async function auth2(req) {
+async function auth(req) {
     const options = {
         jwtKey: `-----BEGIN PUBLIC KEY-----
   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2OOVqxwzb1ahi4g7/nNH
@@ -39,7 +40,7 @@ async function auth2(req) {
   SQIDAQAB
   -----END PUBLIC KEY-----
   `,
-        issuer: "your-issuer-url"
+        issuer: "https://cool-piranha-0.clerk.accounts.dev"
     };
     try {
         const token = req.headers.get("authorization")?.split(" ")[1];
@@ -51,7 +52,7 @@ async function auth2(req) {
             };
         }
         // Verify the session token dynamically with Clerk
-        const user = await verifyToken(token, options);
+        const user = await (0,_clerk_clerk_sdk_node__WEBPACK_IMPORTED_MODULE_0__.verifyToken)(token, options);
         console.log(user);
         return {
             userId: user.sub,

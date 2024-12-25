@@ -270,7 +270,12 @@ async function POST(req, { params }) {
     try {
         // Get the payment details from the request body
         const { razorpayPaymentId, razorpayOrderId, razorpaySignature } = await req.json();
-        const { userId } = (0,utils/* auth */.I)();
+        const { userId } = await (0,utils/* auth */.I)(req);
+        if (!userId) {
+            return new next_response/* default */.Z("User not authenticated", {
+                status: 401
+            });
+        }
         // Fetch the order from Razorpay using the orderId
         const order = await route_razorpay.orders.fetch(razorpayOrderId);
         // Verify the Razorpay signature
@@ -352,7 +357,7 @@ if (false) {}
 var __webpack_require__ = require("../../../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [501,335,548,766,54,839], () => (__webpack_exec__(1205)));
+var __webpack_exports__ = __webpack_require__.X(0, [501,335,478,766,54,839], () => (__webpack_exec__(1205)));
 module.exports = __webpack_exports__;
 
 })();

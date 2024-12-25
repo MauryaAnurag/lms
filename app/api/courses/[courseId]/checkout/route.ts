@@ -18,7 +18,10 @@ export async function POST(
 ) {
   try {
 
-    const { userId } = auth();
+    const { userId } = await auth(req);
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
     const { couponCode } = await req.json();
     // Find the course
     const course = await db.course.findUnique({

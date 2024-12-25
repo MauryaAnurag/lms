@@ -9,12 +9,12 @@ const razorpay = new Razorpay({
     key_secret: "nfvZZg9IYHRNCS1Ltprzv5x1",
   });
 
-export async function POST(request: Request, { params }: { params: { voucherId: string } }) {
-  const { couponCode } = await request.json();
+export async function POST(req: Request, { params }: { params: { voucherId: string } }) {
+  const { couponCode } = await req.json();
   const voucherId = params.voucherId;
 
   try {
-    const { userId } = auth();
+    const { userId } = await auth(req);
 
     const voucher = await db.voucher.findUnique({
       where: {

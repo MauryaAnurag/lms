@@ -264,7 +264,7 @@ const { Video } = new mux/* default */.Z(process.env.MUX_TOKEN_ID, process.env.M
 const dynamic = "force-dynamic";
 async function DELETE(req, { params }) {
     try {
-        const { userId } = (0,utils/* auth */.I)();
+        const { userId } = await (0,utils/* auth */.I)(req);
         if (!userId) {
             return new next_response/* default */.Z("Unauthorized", {
                 status: 401
@@ -308,7 +308,7 @@ async function DELETE(req, { params }) {
 }
 async function PATCH(req, { params }) {
     try {
-        const { userId } = (0,utils/* auth */.I)();
+        const { userId } = await (0,utils/* auth */.I)(req);
         const { courseId } = params;
         const values = await req.json();
         if (!userId) {
@@ -335,7 +335,7 @@ async function PATCH(req, { params }) {
 }
 async function GET(req, { params }) {
     const { courseId } = params; // Extract courseId from params
-    const { userId } = (0,utils/* auth */.I)(); // Get the authenticated user's ID
+    const { userId } = await (0,utils/* auth */.I)(req); // Get the authenticated user's ID
     // If no userId is found, return Unauthorized
     if (!userId) {
         return new next_response/* default */.Z("Unauthorized", {
@@ -439,7 +439,7 @@ if (false) {}
 var __webpack_require__ = require("../../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [501,335,548,766,161,839], () => (__webpack_exec__(5226)));
+var __webpack_exports__ = __webpack_require__.X(0, [501,335,478,766,161,839], () => (__webpack_exec__(5226)));
 module.exports = __webpack_exports__;
 
 })();
