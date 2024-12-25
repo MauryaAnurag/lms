@@ -153,7 +153,8 @@ var route_namespaceObject = {};
 __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
   GET: () => (GET),
-  POST: () => (POST)
+  POST: () => (POST),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -206,6 +207,7 @@ const ourFileRouter = {
 ;// CONCATENATED MODULE: ./app/api/uploadthing/route.ts
 
 
+const dynamic = "force-dynamic";
 // Export routes for Next App Router
 const { GET, POST } = (0,next/* createNextRouteHandler */.s)({
     router: ourFileRouter

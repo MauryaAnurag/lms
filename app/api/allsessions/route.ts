@@ -2,6 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db"; // Prisma instance
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {

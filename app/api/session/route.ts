@@ -2,6 +2,8 @@ import { db } from "@/lib/db";  // Make sure this is where you have your Prisma 
 import { auth } from "@/lib/utils"; // Assuming you have an auth function to check if the user is authenticated
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 // Handle session creation
 export async function POST(req: Request) {
   try {

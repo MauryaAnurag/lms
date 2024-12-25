@@ -12,6 +12,7 @@ const razorpay = new Razorpay({
 });
 
 
+export const dynamic = 'force-dynamic';
 
 
 export async function POST(req: Request, { params }: { params: { courseId: string } }) {

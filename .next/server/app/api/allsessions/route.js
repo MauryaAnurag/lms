@@ -40,7 +40,8 @@ __webpack_require__.d(__webpack_exports__, {
 var route_namespaceObject = {};
 __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
-  GET: () => (GET)
+  GET: () => (GET),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -56,6 +57,7 @@ var db = __webpack_require__(3302);
 // File: app/api/sessions/route.ts
 
  // Prisma instance
+const dynamic = "force-dynamic";
 async function GET() {
     try {
         const sessions = await db.db.session.findMany({

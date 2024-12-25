@@ -1,7 +1,31 @@
 {
   "version": 1,
   "functions": {
+    "/api/allsessions": {},
+    "/api/categories": {},
+    "/api/coupons": {},
+    "/api/courses/[courseId]/attachments/[attachmentId]": {},
+    "/api/courses/[courseId]/attachments": {},
+    "/api/courses/[courseId]/chapters/[chapterId]/info": {},
+    "/api/courses/[courseId]/chapters/[chapterId]/progress": {},
+    "/api/courses/[courseId]/chapters/[chapterId]/publish": {},
+    "/api/courses/[courseId]/chapters/[chapterId]/unpublish": {},
+    "/api/courses/[courseId]/chapters/[chapterId]": {},
+    "/api/courses/[courseId]/chapters/reorder": {},
+    "/api/courses/[courseId]/checkout": {},
+    "/api/courses/[courseId]/chapters": {},
+    "/api/courses/[courseId]/process_checkout": {},
+    "/api/courses/[courseId]/progress": {},
+    "/api/courses/[courseId]": {},
+    "/api/courses/[courseId]/publish": {},
+    "/api/courses/[courseId]/unpublish": {},
+    "/api/courses": {},
+    "/api/dashboard": {},
+    "/api/create-coupon": {},
     "/api/purchases": {},
+    "/api/session": {},
+    "/api/vouchers/[voucherId]/checkout": {},
+    "/api/vouchers": {},
     "/api/uploadthing": {}
   }
 }

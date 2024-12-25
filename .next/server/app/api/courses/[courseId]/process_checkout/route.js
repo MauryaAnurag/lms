@@ -236,7 +236,8 @@ __webpack_require__.d(__webpack_exports__, {
 var route_namespaceObject = {};
 __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
-  POST: () => (POST)
+  POST: () => (POST),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -264,6 +265,7 @@ const route_razorpay = new (razorpay_default())({
     key_id: "rzp_test_fBttTZVJm9TsAD",
     key_secret: "nfvZZg9IYHRNCS1Ltprzv5x1"
 });
+const dynamic = "force-dynamic";
 async function POST(req, { params }) {
     try {
         // Get the payment details from the request body

@@ -159,7 +159,8 @@ __webpack_require__.d(__webpack_exports__, {
 var route_namespaceObject = {};
 __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
-  GET: () => (GET)
+  GET: () => (GET),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -233,6 +234,7 @@ const getCourses = async ({ userId, title, categoryId })=>{
 
  // Assuming you are using Clerk for authentication
 
+const dynamic = "force-dynamic";
 async function GET(req) {
     try {
         // Get the userId from Clerk's auth function

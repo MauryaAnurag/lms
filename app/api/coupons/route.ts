@@ -3,6 +3,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db"; // Assuming you have a db instance for Prisma
 
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
         const { couponCode } = await req.json();

@@ -160,7 +160,8 @@ var route_namespaceObject = {};
 __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
   GET: () => (GET),
-  POST: () => (POST)
+  POST: () => (POST),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -178,6 +179,7 @@ var next_response = __webpack_require__(9335);
  // Make sure this is where you have your Prisma instance
  // Assuming you have an auth function to check if the user is authenticated
 
+const dynamic = "force-dynamic";
 // Handle session creation
 async function POST(req) {
     try {

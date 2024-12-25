@@ -159,7 +159,8 @@ __webpack_require__.d(__webpack_exports__, {
 var route_namespaceObject = {};
 __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
-  GET: () => (GET)
+  GET: () => (GET),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -180,6 +181,7 @@ var next_response = __webpack_require__(9335);
 
 
 
+const dynamic = "force-dynamic";
 async function GET(req, { params }) {
     try {
         const { userId } = (0,utils/* auth */.I)();

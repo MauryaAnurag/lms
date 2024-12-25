@@ -161,7 +161,8 @@ __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
   GET: () => (GET),
   OPTIONS: () => (OPTIONS),
-  POST: () => (POST)
+  POST: () => (POST),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -182,6 +183,7 @@ var teacher = __webpack_require__(8542);
 
 
 
+const dynamic = "force-dynamic";
 async function POST(req) {
     try {
         const { userId } = (0,utils/* auth */.I)();

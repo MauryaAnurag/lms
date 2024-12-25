@@ -8,6 +8,7 @@ const { Video } = new Mux(
   process.env.MUX_TOKEN_ID!,
   process.env.MUX_TOKEN_SECRET!,
 );
+export const dynamic = 'force-dynamic';
 
 export async function DELETE(
   req: Request,

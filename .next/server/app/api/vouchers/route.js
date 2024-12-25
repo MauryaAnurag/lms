@@ -42,7 +42,8 @@ __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
   DELETE: () => (DELETE),
   GET: () => (GET),
-  POST: () => (POST)
+  POST: () => (POST),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -57,6 +58,7 @@ var db = __webpack_require__(3302);
 ;// CONCATENATED MODULE: ./app/api/vouchers/route.ts
 
 
+const dynamic = "force-dynamic";
 async function POST(request) {
     const { title, price, discountPrice, description } = await request.json();
     try {

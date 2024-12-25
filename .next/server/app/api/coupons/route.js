@@ -43,7 +43,8 @@ __webpack_require__.d(route_namespaceObject, {
   DELETE: () => (DELETE),
   GET: () => (GET),
   POST: () => (POST),
-  PUT: () => (PUT)
+  PUT: () => (PUT),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -59,6 +60,7 @@ var db = __webpack_require__(3302);
 // pages/api/admin/coupons.ts
 
  // Assuming you have a db instance for Prisma
+const dynamic = "force-dynamic";
 async function POST(req, res) {
     try {
         const { couponCode } = await req.json();

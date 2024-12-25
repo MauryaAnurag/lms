@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server';
 import { getDashboardCourses } from "@/actions/get-dashboard-courses";
 import { auth, auth2 } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
 
 // GET method to fetch the dashboard courses for a specific user
 export async function GET(req: NextRequest) {

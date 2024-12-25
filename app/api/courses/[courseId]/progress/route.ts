@@ -2,6 +2,7 @@ import { getProgress } from "@/actions/get-progress";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
+export const dynamic = 'force-dynamic';
 
 
 export async function GET(req: NextRequest, { params }: { params: { courseId: string } }) {

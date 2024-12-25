@@ -5,6 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/utils"; // Assuming you're using Clerk or another auth solution
 import { Attachment } from "@prisma/client"; // Assuming you have Attachment model in Prisma
 
+export const dynamic = 'force-dynamic';
+
 // API route to fetch chapter details
 export async function GET(req: NextRequest, { params }: { params: { courseId: string; chapterId: string } }) {
   try {

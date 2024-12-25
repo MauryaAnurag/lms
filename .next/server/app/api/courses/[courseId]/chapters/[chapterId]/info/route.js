@@ -159,7 +159,8 @@ __webpack_require__.d(__webpack_exports__, {
 var route_namespaceObject = {};
 __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
-  GET: () => (GET)
+  GET: () => (GET),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -178,6 +179,7 @@ var utils = __webpack_require__(5839);
 
 
  // Assuming you're using Clerk or another auth solution
+const dynamic = "force-dynamic";
 // API route to fetch chapter details
 async function GET(req, { params }) {
     try {

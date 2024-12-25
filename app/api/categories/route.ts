@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/utils"; // Assuming you are using Clerk for authentication
 import { getCourses } from "@/actions/get-courses";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   try {
     // Get the userId from Clerk's auth function

@@ -238,7 +238,8 @@ __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
   DELETE: () => (DELETE),
   GET: () => (GET),
-  PATCH: () => (PATCH)
+  PATCH: () => (PATCH),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -260,6 +261,7 @@ var db = __webpack_require__(3302);
 
 
 const { Video } = new mux/* default */.Z(process.env.MUX_TOKEN_ID, process.env.MUX_TOKEN_SECRET);
+const dynamic = "force-dynamic";
 async function GET(req, { params }) {
     try {
         // Fetch the chapter with muxData

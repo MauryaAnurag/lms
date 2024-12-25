@@ -236,7 +236,8 @@ __webpack_require__.d(__webpack_exports__, {
 var route_namespaceObject = {};
 __webpack_require__.r(route_namespaceObject);
 __webpack_require__.d(route_namespaceObject, {
-  POST: () => (POST)
+  POST: () => (POST),
+  dynamic: () => (dynamic)
 });
 
 // EXTERNAL MODULE: ./node_modules/next/dist/server/node-polyfill-headers.js
@@ -258,6 +259,7 @@ var utils = __webpack_require__(5839);
 
 
 
+const dynamic = "force-dynamic";
 // Initialize Razorpay with your credentials
 const route_razorpay = new (razorpay_default())({
     key_id: "rzp_test_fBttTZVJm9TsAD",

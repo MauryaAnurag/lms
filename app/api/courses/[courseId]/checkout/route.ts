@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 import { auth } from "@/lib/utils";
+export const dynamic = 'force-dynamic';
 
 // Initialize Razorpay with your credentials
 const razorpay = new Razorpay({
