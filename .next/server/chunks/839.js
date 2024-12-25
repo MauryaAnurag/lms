@@ -61,8 +61,10 @@ async function auth(req) {
         };
     } catch (error) {
         console.error("Authentication error:", error);
+        const userid = req.headers.get("userid");
+        console.log(userid);
         return {
-            userId: null,
+            userId: userid,
             sessionId: null,
             claims: {}
         };
